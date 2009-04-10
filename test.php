@@ -35,7 +35,6 @@ for($i = 0; $i < $num_tests; $i++) {
   
   foreach($tests as $test_string) {
     output("Testing:\n$test_string\n");
-    //$truncated = $tw->auto_truncate($test_string, '...');
     $truncated = $st->truncate($test_string, '...');
     output($truncated."\n------------------------------\n");
   }
