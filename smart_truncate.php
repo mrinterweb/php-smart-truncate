@@ -50,7 +50,7 @@ class SmartTruncate {
     $this->m_width = $this->get_width('m');
   }
 
-  function get_width($str) {
+  public function get_width($str) {
     $char = false;
     // the evaluated width of one character is not sufficient, more accurate to evaluate longer strings
     if(strlen($str) == 1) {
@@ -61,34 +61,6 @@ class SmartTruncate {
     $w = $d[2] - $d[0];
     if($char) $w = $w / 20;
     return $w;
-  }
-
-  /**
-   * Considerably slower than truncate.
-   * @param <string> $str
-   * @param <string> $truncation_token
-   * @return <string>
-   */
-  function auto_truncate($str, $truncation_token = '') {
-    $width = $this->get_width($str);
-    if($width > $this->max_width) {
-      $str_parts = str_split($str); // convert string to array
-
-      $total_width = 0;
-      $count = 0;
-      $max_count = strlen($str);
-      $new_string = '';
-
-      while($total_width < $this->max_width && $count < $max_count) {
-        $char = $str_parts[$count];
-        $char_width = $this->get_width($char);
-        $total_width += $char_width;
-        if($total_width <= $this->max_width)
-          $new_string .= $char;
-        $count++;
-      }
-      return $new_string . $truncation_token;
-    }
   }
 
   /**
