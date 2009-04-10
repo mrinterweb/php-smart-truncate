@@ -5,8 +5,6 @@
  * This class requires GD library in PHP
  * The truncation performed in this class has been tuned for performance.
  * 
- * By: Sean McCleary (Swipht Technologies) April 9th, 2009
- * 
  * Note. auto_truncate is left in place because it was my first proof of concept.
  *   auto_truncate is aproximately twice as slow as the recursive truncate
  *   auto_truncate was left in for historical value and to confuse people :)

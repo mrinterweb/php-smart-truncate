@@ -4,6 +4,36 @@ If you have ever tried to truncate strings with non-monospaced fonts, you will k
 
 IMPORTANT NOTE!  You will need to use your own TrueType fonts.  I have excluded these fonts because they are released under a different license.
 
+Here are some ways to get msttcorefonts
+
+Ubuntu:
+apt-get install msttcorefonts
+
+http://corefonts.sourceforge.net/
+
+All you really need is the font you are trying to truncate with (example: Arial.ttf).
+
+
+Usage Example:
+
+<code PHP>
+<?php
+
+require './smart_truncate.php';
+
+$width = 185; // width in pixels
+$points = 7.5; // depending on the size of your font convert font size to points. example: 10 pixels == 7.5 points
+$font = './Arial.ttf'; // using absolute paths to your font file is preferred
+
+$long_string = "This is a test of a long string that has no real purpose that I am just typing.";
+
+$st = new SmartTruncate($font, $points, $width);
+
+echo $st->truncate($long_string, '...');
+
+?>
+</code>
+
 More notes to come.
 
 License: MIT
