@@ -75,7 +75,7 @@ class SmartTruncate {
    * Wrapper and public accessor for recursive_truncate
    * This is the method you call when you want to use the truncator
    * @param <string> $str target to truncate
-   * @param <string> $truncation_token '...'
+   * @param <string> $truncation_token '...', '&hellip;'
    * @return <string>
    */
   public function truncate($str, $truncation_token = '') {
