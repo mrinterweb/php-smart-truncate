@@ -2,7 +2,24 @@ This is a quick PHP string truncator that truncates based on actual pixels for r
 
 If you have ever tried to truncate strings with non-monospaced fonts, you will know why I cooked up this class.
 
+The following two lines render at aproximately the same width with Arial 10 pixel font:
+"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiii"
+"MMMMMMMMMMMMMMMMM MMM"
+
+This truncator uses PHP's GD Library imagettfbbox to do its magic.
+With GD version 1,  the size argument is in PIXELS for imagettfbbox.
+With GD version 2+, the size argument is in POINTS for imagettfbbox.
+
+You can ensure GD is installed on your machine by typing
+php -m
+Look for GD in the result of this command.
+
+I have done a decent amount of benchmarking and performance optimizations to make this run fairly fast despite using GD's imagettfbox.
+test.php can help you benchmark and test the class.
+system_test.php can help you troubleshoot your environment.
+
 IMPORTANT NOTE!  You will need to use your own TrueType fonts.  I have excluded these fonts because they are released under a different license.
+
 
 Here are some ways to get msttcorefonts
 
@@ -16,7 +33,6 @@ All you really need is the font you are trying to truncate with (example: Arial.
 
 Usage Example:
 
-<code PHP>
 <?php
 
 require './smart_truncate.php';
@@ -28,11 +44,9 @@ $font = './Arial.ttf'; // using absolute paths to your font file is preferred
 $long_string = "This is a test of a long string that has no real purpose that I am just typing.";
 
 $st = new SmartTruncate($font, $points, $width);
-
 echo $st->truncate($long_string, '...');
 
 ?>
-</code>
 
 More notes to come.
 
