@@ -1,13 +1,11 @@
 <?php
-/* 
+/*
  * Automates the truncation of text for a given width based on the rendered font provided
- * This type of truncation is very usefull for truncating text that is rendered in a non-monospaced fonts.
+ * This type of truncation is very useful for truncating text that is rendered in a non-mono-spaced fonts.
  * This class requires GD library in PHP
  * The truncation performed in this class has been tuned for performance.
- * 
- * Note. auto_truncate is left in place because it was my first proof of concept.
- *   auto_truncate is aproximately twice as slow as the recursive truncate
- *   auto_truncate was left in for historical value and to confuse people :)
+ *
+ * For more information: http://github.com/mrinterweb/php-smart-truncate/tree/master
  *
  * STANDARD MIT LICENSE
  *
@@ -36,8 +34,15 @@
  *
  */
 class SmartTruncate {
+
   var $font, $points, $max_width, $m_width;
 
+  /**
+   * Constructor
+   * @param <string> $font path to TrueType font. Absolute paths are preferred
+   * @param <float> $points font size in points.  Please convert font size to points
+   * @param <integer> $max_width target pixel width to truncate to
+   */
   function SmartTruncate($font, $points, $max_width) {
     if(!file_exists($font)) {
       trigger_error('Font file not found');
@@ -48,6 +53,11 @@ class SmartTruncate {
     $this->m_width = $this->get_width('m');
   }
 
+  /**
+   * Calculates the rendered width of the given string according to the font settings provided to the constructor.
+   * @param <string> $str
+   * @return <integer> Pixel width
+   */
   public function get_width($str) {
     $char = false;
     // the evaluated width of one character is not sufficient, more accurate to evaluate longer strings
@@ -62,7 +72,8 @@ class SmartTruncate {
   }
 
   /**
-   * wrapper and public accessor for recursive_truncate
+   * Wrapper and public accessor for recursive_truncate
+   * This is the method you call when you want to use the truncator
    * @param <string> $str target to truncate
    * @param <string> $truncation_token '...'
    * @return <string>
@@ -107,7 +118,7 @@ class SmartTruncate {
     if(($combined_width = $this->get_width($first_chunk . $second_chunk)) < $this->max_width) {
       # start itterative process to finish it off
       $remaining_chars = substr($second_chunk_backup, - strlen($second_chunk));
-      
+
       $count = 0;
       $max_count = strlen($second_chunk_backup);
       $new_string = $first_chunk.$second_chunk;
