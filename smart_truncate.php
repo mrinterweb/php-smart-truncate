@@ -35,7 +35,7 @@
  */
 class SmartTruncate {
 
-  var $font, $points, $max_width, $m_width;
+  private $font, $points, $max_width, $m_width;
 
   /**
    * Constructor
