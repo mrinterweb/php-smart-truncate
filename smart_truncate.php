@@ -43,7 +43,7 @@ class SmartTruncate {
    * @param <float> $points font size in points.  Please convert font size to points
    * @param <integer> $max_width target pixel width to truncate to
    */
-  function SmartTruncate($font, $points, $max_width) {
+  public function SmartTruncate($font, $points, $max_width) {
     if(!file_exists($font)) {
       trigger_error('Font file not found');
     }

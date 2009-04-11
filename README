@@ -6,6 +6,7 @@ The following two lines render at aproximately the same width with Arial 10 pixe
 "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiii"
 "MMMMMMMMMMMMMMMMM MMM"
 
+Designed for PHP 5.
 This truncator uses PHP's GD Library imagettfbbox to do its magic.
 With GD version 1,  the size argument is in PIXELS for imagettfbbox.
 With GD version 2+, the size argument is in POINTS for imagettfbbox.
