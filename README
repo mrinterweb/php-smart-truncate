@@ -1,3 +1,8 @@
+
+This project is no longer maintained because all modern browsers support "text-overflow: ellipisis" now.
+
+
+
 This is a quick PHP string truncator that truncates based on actual pixels for rendered fonts.
 
 If you have ever tried to truncate strings with non-monospaced fonts, you will know why I cooked up this class.
